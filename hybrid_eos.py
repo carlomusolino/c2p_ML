@@ -1,5 +1,5 @@
 import numpy as np
-
+import torch 
 class hybrid_eos:
 
     def __init__(self, K, gamma, gamma_th):
@@ -14,11 +14,11 @@ class hybrid_eos:
         return press_cold,eps_cold
 
     def eps_th__temp(self,temp):
-        return np.maximum(0, temp/(self.gamma_th-1))
+        return torch.maximum(torch.zeros_like(temp), temp/(self.gamma_th-1))
 
     def press__eps_rho(self,eps,rho):
         press_cold,eps_cold = self.press_cold_eps_cold__rho(rho)
-        eps = np.maximum(eps,eps_cold)
+        eps = torch.maximum(eps,eps_cold)
 
         return press_cold + ( eps - eps_cold ) * rho * (self.gamma_th-1) 
 
@@ -29,7 +29,7 @@ class hybrid_eos:
 
     def press_eps__temp_rho(self,temp,rho):
         press_cold,eps_cold = self.press_cold_eps_cold__rho(rho)
-        temp = np.maximum(temp,0)
+        temp = torch.maximum(temp,torch.zeros_like(temp))
         eps_th = self.eps_th__temp(temp)
         #eps_th = 0 
         press = press_cold + eps_th * rho * (self.gamma_th-1)
