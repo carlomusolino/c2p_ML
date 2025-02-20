@@ -36,18 +36,18 @@ class c2p_NN_enhanced(nn.Module):
         #y = y / (1 + y)                               # Rescale to [0, 1]
         return torch.nn.functional.sigmoid(x)
 
-    #def forward(self, x):
-    #    zm, zp = self.compute_bounds(x)
-    #    x = self.activation(self.bn1(self.fc1(x)))
-    #    x = self.activation(self.bn2(self.fc2(x)))
-    #    x = self.activation(self.bn3(self.fc3(x)))
-    #    x = self.clamp(self.fc4(x))
-    #    x = self.rescale(zm, zp, x)
-    #    return x
-
     def forward(self, x):
-        x = self.activation(self.fc1(x))
-        x = self.activation(self.fc2(x))
-        x = self.activation(self.fc3(x))
-        x = self.activation(self.fc4(x))
+        zm, zp = self.compute_bounds(x)
+        x = self.activation(self.bn1(self.fc1(x)))
+        x = self.activation(self.bn2(self.fc2(x)))
+        x = self.activation(self.bn3(self.fc3(x)))
+        x = self.clamp(self.fc4(x))
+        x = self.rescale(zm, zp, x)
         return x
+
+    #def forward(self, x):
+    #    x = self.activation(self.fc1(x))
+    #    x = self.activation(self.fc2(x))
+    #    x = self.activation(self.fc3(x))
+    #    x = self.activation(self.fc4(x))
+    #    return x
