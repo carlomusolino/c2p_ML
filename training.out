@@ -1,0 +1,20 @@
+/mnt/rafast/musolino/pyenv/numrel/lib/python3.10/site-packages/torch/nn/modules/linear.py:125: UserWarning: Attempting to use hipBLASLt on an unsupported architecture! Overriding blas backend to hipblas (Triggered internally at ../aten/src/ATen/Context.cpp:296.)
+  return F.linear(input, self.weight, self.bias)
+tensor(1.1261e-13, device='cuda:0')
+Epoch 0, Loss: 0.00534, Test loss: 0.000763
+Epoch 10, Loss: 0.00195, Test loss: 0.000315
+Epoch 20, Loss: 0.00162, Test loss: 0.000302
+Epoch 30, Loss: 0.00151, Test loss: 0.000206
+Epoch 40, Loss: 0.00154, Test loss: 0.000188
+Epoch 50, Loss: 0.00149, Test loss: 0.000232
+Epoch 60, Loss: 0.00144, Test loss: 0.000325
+Epoch 70, Loss: 0.0014, Test loss: 0.000388
+Epoch 80, Loss: 0.00127, Test loss: 6.01e-05
+Epoch 90, Loss: 0.00129, Test loss: 7.14e-05
+Epoch 100, Loss: 0.00131, Test loss: 0.000112
+Epoch 110, Loss: 0.00119, Test loss: 3.23e-05
+Final loss: 1.3456286069413181e-05
+Traceback (most recent call last):
+  File "/home/musolino/ML/c2p_ML/c2p_ML_oned.py", line 387, in <module>
+    DD = C[:,0].cpu().view(100,100).detach().numpy()
+RuntimeError: shape '[100, 100]' is invalid for input of size 490000
