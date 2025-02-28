@@ -10,4 +10,4 @@
 source /mnt/rafast/musolino/pyenv/numrel/bin/activate 
 
 
-python c2p_ML_oned.py
+python train.py --d_ff $1 --model_name $2 
